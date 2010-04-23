@@ -16,11 +16,12 @@ display_panel do
   end
 end
 
-controll_panel do
+control_panel do
   incline_down_button :text => '<<', :id => 'incline_down_button'
   incline_up_button :text => '>>', :id => 'incline_up_button'
   speed_down_button :text => '<<', :id => 'speed_down_button'
   speed_up_button :text => '>>', :id => 'speed_up_button'
+  reset_incline_button :text => 'Reset', :id => 'reset_incline_button'
   stop_button :text => 'Stop', :id => 'stop_button'
   start_button :text => 'Start', :id => 'start_button'
 end

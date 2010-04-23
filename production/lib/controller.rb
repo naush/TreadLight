@@ -23,5 +23,9 @@ module Controller
     current_incline -= 0.1 if current_incline > 0.0
     @meter.incline = "#{current_incline}%"
   end  
+  
+  def reset_incline
+    @meter.incline = "0.0%"
+  end
 
 end

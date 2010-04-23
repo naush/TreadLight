@@ -18,7 +18,7 @@ display_panel {
   bottom_margin 5
 }
 
-controll_panel {
+control_panel {
   background_color :black
   transparency '75%'
   horizontal_alignment :center
@@ -114,11 +114,17 @@ button {
 start_button {
   extends :button
   background_color '#00FF7F'
+  hover {
+    background_color :cyan
+  }
 }
 
 stop_button {
   extends :button
   background_color :red
+  hover {
+    background_color :cyan
+  }
 }
 
 speed_up_button {
@@ -148,6 +154,14 @@ incline_up_button {
 incline_down_button {
   extends :button
   background_color "#87CEEB"
+  hover {
+    background_color :cyan
+  }
+}
+
+reset_incline_button {
+  extends :button
+  background_color :yellow
   hover {
     background_color :cyan
   }
