@@ -1,9 +1,9 @@
-display_panel do
-  total_miles_display do
-      total_miles_label :text => 'Total Miles'
-      total_miles_value :text => '7.6', :id => 'total_miles_value'
-  end
-end
+# display_panel do
+#   total_miles_display do
+#       total_miles_label :text => 'Total Miles'
+#       total_miles_value :text => '7.6', :id => 'total_miles_value'
+#   end
+# end
 
 display_panel do
   incline_display do

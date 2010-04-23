@@ -12,7 +12,7 @@ display_panel {
   horizontal_alignment :center
   vertical_alignment :center
   width "95%"
-  height "35%"
+  height "60%"
   rounded_corner_radius 5
   top_margin 5
   bottom_margin 5
@@ -24,7 +24,7 @@ controll_panel {
   horizontal_alignment :center
   vertical_alignment :center
   width "100%"
-  height "30%"
+  height "40%"
 }
 
 display {
