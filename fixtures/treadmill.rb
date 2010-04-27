@@ -1,11 +1,8 @@
 class Treadmill
-
   def speed
-    return "#{(Limelight::Specs.producer.production.treadmill.speed * 10).round.to_f / 10}"
+    return"%0.1f" % Limelight::Specs.producer.production.treadmill.speed
   end
-
   def incline
-    return "#{(Limelight::Specs.producer.production.treadmill.incline * 10).round.to_f / 10}"
+    return"%0.1f" % Limelight::Specs.producer.production.treadmill.incline
   end
-
 end
