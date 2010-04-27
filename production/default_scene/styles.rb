@@ -90,15 +90,6 @@ incline_label {
   extends :label
 }
 
-# devtool {
-#   width "10%"
-#   height "100%"
-#   background_color :yellow
-#   rounded_corner_radius 5
-#   horizontal_alignment :center
-#   vertical_alignment :center
-# }
-
 button {
   width "25%"
   height "50%"
@@ -113,7 +104,7 @@ button {
 
 start_button {
   extends :button
-  background_color '#4AA02C'
+  background_color "66FF66"
   hover {
     background_color :green
   }
@@ -121,15 +112,23 @@ start_button {
 
 stop_button {
   extends :button
-  background_color "#E41B17"
+  background_color "FF9999"
   hover {
     background_color :red
   }
 }
 
+reset_incline_button {
+  extends :button
+  background_color "FFFF99"
+  hover {
+    background_color :yellow
+  }
+}
+
 speed_up_button {
   extends :button
-  background_color "#87CEEB"
+  background_color "87CEEB"
   hover {
     background_color :cyan
   }
@@ -137,7 +136,7 @@ speed_up_button {
 
 speed_down_button {
   extends :button
-  background_color "#87CEEB"
+  background_color "87CEEB"
   hover {
     background_color :cyan
   }
@@ -145,7 +144,7 @@ speed_down_button {
 
 incline_up_button {
   extends :button
-  background_color "#87CEEB"
+  background_color "87CEEB"
   hover {
     background_color :cyan
   }
@@ -153,16 +152,8 @@ incline_up_button {
 
 incline_down_button {
   extends :button
-  background_color "#87CEEB"
+  background_color "87CEEB"
   hover {
     background_color :cyan
-  }
-}
-
-reset_incline_button {
-  extends :button
-  background_color "#FDD017"
-  hover {
-    background_color :yellow
   }
 }

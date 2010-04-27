@@ -54,11 +54,11 @@ class LimelightFixture
   def press_right
     scene.key_pressed(MockEvent.new(39))
   end
-  
+
   def press_left
     scene.key_pressed(MockEvent.new(37))
   end
-  
+
   def press_up
     scene.key_pressed(MockEvent.new(38))
   end
