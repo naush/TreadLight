@@ -113,17 +113,17 @@ button {
 
 start_button {
   extends :button
-  background_color '#00FF7F'
+  background_color '#4AA02C'
   hover {
-    background_color :cyan
+    background_color :green
   }
 }
 
 stop_button {
   extends :button
-  background_color :red
+  background_color "#E41B17"
   hover {
-    background_color :cyan
+    background_color :red
   }
 }
 
@@ -161,8 +161,8 @@ incline_down_button {
 
 reset_incline_button {
   extends :button
-  background_color :yellow
+  background_color "#FDD017"
   hover {
-    background_color :cyan
+    background_color :yellow
   }
 }

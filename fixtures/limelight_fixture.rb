@@ -28,6 +28,7 @@ class LimelightFixture
   def initialize
     Limelight::Main.initializeTestContext
     Limelight::Specs.producer = Limelight::Producer.new($PRODUCTION_PATH)
+    Limelight::Specs.producer.production.test_run = true
     Limelight::Specs.producer.open
   end
 

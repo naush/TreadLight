@@ -4,6 +4,7 @@
 
 module Production
   attr_reader :treadmill
+  attr_accessor :test_run
 #  # Define this method if you want the production name to be different from the default, directory name.
 #  def name
 #    return Treadmill
@@ -35,8 +36,11 @@ module Production
  def production_opened
    @speed_value = theater["default"].current_scene.find("speed_value")
    @incline_value = theater["default"].current_scene.find("incline_value")
-   # @treadmill = MockTreadmill.new
-   @treadmill = Java::ifit::Treadmill.new
+   if (test_run)
+     @treadmill = MockTreadmill.new
+   else
+     @treadmill = Java::ifit::Treadmill.new
+   end
    @meter = Meter.new(@treadmill, @speed_value, @incline_value)
    theater["default"].current_scene.meter = @meter
  end
