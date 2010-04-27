@@ -7,10 +7,9 @@ module Controller
   STEP = 0.1
 
   def update_meter(current_value, step, boundary_value)
-    if step == 0.1
-      current_value += step if current_value < boundary_value
-    elsif step == -0.1
-      current_value += step if current_value > boundary_value
+    if (step == 0.1 && current_value < boundary_value) ||
+       (step == -0.1 && current_value > boundary_value)
+      current_value += step
     end
     return current_value
   end
@@ -30,7 +29,7 @@ module Controller
   def incline_down
     @meter.incline = "#{update_meter(@meter.incline?.to_f, -STEP, MIN_INCLINE)}%"
   end
-  
+
   def reset_incline
     @meter.incline = "0.0%"
   end
