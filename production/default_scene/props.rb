@@ -5,6 +5,8 @@
 #   end
 # end
 
+input_box_list :id => 'input_box_list'
+
 display_panel do
   incline_display do
     incline_label :text => 'Incline'
@@ -25,3 +27,6 @@ control_panel do
   stop_button :text => 'Stop', :id => 'stop_button'
   start_button :text => 'Start', :id => 'start_button'
 end
+
+incline_input_box :players => 'text_box', :text => '0.0%', :id => 'incline_input_box'
+speed_input_box :players => 'text_box', :text => '0.0', :id => 'speed_input_box'

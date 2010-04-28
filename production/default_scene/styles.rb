@@ -40,9 +40,9 @@ display {
   rounded_corner_radius 15
 }
 
-total_miles_display {
-  extends :display
-}
+# total_miles_display {
+#   extends :display
+# }
 
 speed_display {
   extends :display
@@ -71,6 +71,25 @@ speed_value {
 
 incline_value {
   extends :value
+}
+
+input_box {
+  width 80
+  height 40
+  transparency '100%'
+  float :on
+}
+
+incline_input_box {
+  extends :input_box
+  x 90
+  y 30
+}
+
+speed_input_box {
+  extends :input_box
+  x 290
+  y 30
 }
 
 label {
