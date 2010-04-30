@@ -14,22 +14,22 @@ end
 class LimelightFixture
   
   class MockEvent
-
-    def initialize(key_code)
-      @key_code = key_code
+    attr_accessor :keyCode
+    def initialize(keyCode)
+      @keyCode = keyCode
     end
-  
     def getKeyCode
-      return @key_code
+      return @keyCode
     end
-
   end
-  
+
   def initialize
     Limelight::Main.initializeTestContext
     Limelight::Specs.producer = Limelight::Producer.new($PRODUCTION_PATH)
     Limelight::Specs.producer.production.test_run = true
     Limelight::Specs.producer.open
+    @speed_input_box = scene.find('speed_input_box')
+    @incline_input_box = scene.find('incline_input_box')
   end
 
   def shutdown
@@ -51,6 +51,30 @@ class LimelightFixture
     scene.find(prop_id).mouse_clicked(nil)
   end
   
+  def type_in_input_box(key, box)
+    if (box == :speed)
+      input_box = @speed_input_box
+    elsif (box == :incline)
+      input_box = @incline_input_box
+    end
+    if (key =~ /\d/)
+      input_box.text = key
+    elsif (key == 'enter')
+      key = 10
+    else
+      key = key.to_i + 48
+    end
+    input_box.key_released(MockEvent.new(key.to_i))
+  end
+
+  def type_in_speed_input_box(key)
+    type_in_input_box(key, :speed)
+  end
+
+  def type_in_incline_input_box(key)
+    type_in_input_box(key, :incline)
+  end
+
   def press_right
     scene.key_pressed(MockEvent.new(39))
   end

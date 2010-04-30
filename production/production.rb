@@ -24,6 +24,7 @@ module Production
    $: << File.expand_path(File.dirname(__FILE__) + "/lib")
    require 'mock_treadmill'
    require 'meter'
+   require 'timer'
    require 'ifit.jar'
  end
 #
@@ -34,15 +35,18 @@ module Production
 #
  # Hook #3.  Called when the production, and all the scenes, have fully opened.
  def production_opened
-   @speed_value = theater["default"].current_scene.find("speed_value")
-   @incline_value = theater["default"].current_scene.find("incline_value")
+   @default_scene = theater["default"].current_scene
+   @speed_value = @default_scene.find("speed_value")
+   @incline_value = @default_scene.find("incline_value")
    if (test_run)
      @treadmill = MockTreadmill.new
    else
      @treadmill = Java::ifit::Treadmill.new
    end
    @meter = Meter.new(@treadmill, @speed_value, @incline_value)
-   theater["default"].current_scene.meter = @meter
+   @timer = Timer.new(@default_scene.find("elapsed_time_value"), @default_scene.find("total_miles_value"), @speed_value)
+   @default_scene.meter = @meter
+   @default_scene.timer = @timer
  end
 #
 #  # The system will call this methods when it wishes to close the production, perhaps when the user quits the

@@ -8,7 +8,9 @@ describe "Input Box" do
     @speed_value = scene.find("speed_value")
     @incline_value = scene.find("incline_value")
     @treadmill = MockTreadmill.new
+    @timer = Timer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
+    scene.timer = @timer
     @event = mock('event')
     @event.should_receive(:keyCode).and_return(10)
   end
@@ -51,6 +53,13 @@ describe "Input Box" do
   it "should set min incline when incline_input_box is set with a number less than min incline" do
     @incline_input_box = scene.find('incline_input_box')
     @incline_input_box.text = '-0.1%'
+    @incline_input_box.key_released(@event)
+    scene.incline?.should == '0.0%'
+  end
+
+  it "should set min incline when incline_input_box is not set with a number" do
+    @incline_input_box = scene.find('incline_input_box')
+    @incline_input_box.text = 'asdf'
     @incline_input_box.key_released(@event)
     scene.incline?.should == '0.0%'
   end

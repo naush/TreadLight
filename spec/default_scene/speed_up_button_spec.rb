@@ -8,7 +8,9 @@ describe "Speed Up Button" do
     @speed_value = scene.find("speed_value")
     @incline_value = scene.find("incline_value")
     @treadmill = MockTreadmill.new
+    @timer = Timer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
+    scene.timer = @timer
   end
 
   100.times do |times|

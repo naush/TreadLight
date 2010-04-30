@@ -1,23 +1,22 @@
 module SpeedInputBox
 
-  # def mouse_exited(event)
-  #   scene.find('input_box_list').remove(self)
-  # end
-
-  # def key_typed(event)
-  #   scene.find('speed_value').text = self.text
-  #   if event.keyCode == 10
-  #     # scene.find('input_box_list').remove(self)
-  #   end
-  # end
+  def mouse_clicked(event)
+    scene.find('speed_value').text = ''
+    self.text = ''
+  end
 
   def key_released(event)
-    scene.find('speed_value').text = self.text
     if event.keyCode == 10
       update
+    else
+      scene.find('speed_value').text = self.text
     end
   end
-  
+
+  def focus_lost(event)
+    # update
+  end
+
   def update
     speed_value = self.text.to_f
     if (speed_value > 10.0)
@@ -25,8 +24,8 @@ module SpeedInputBox
     elsif (speed_value < 0.0)
       speed_value = 0.0
     end
-    scene.speed = speed_value
-    self.text = speed_value
+    scene.speed = "%0.1f" % speed_value
+    self.text = "%0.1f" % speed_value
   end
 
 end

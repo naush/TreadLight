@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../spec_helper")
 
-describe "Stop Button" do
+describe "Reset Time Button" do
 
   uses_limelight :scene => "default_scene", :hidden => true
 
@@ -13,11 +13,14 @@ describe "Stop Button" do
     scene.timer = @timer
   end
 
-  it "should only reset speed to 0.0 when the stop button is clicked" do
-    stop_button = scene.find("stop_button")
-    click_helper(stop_button, 1)
-    scene.speed?.should == "0.0"
-    scene.incline?.should == "1.5%"
+  it "should reset time and miles to 0 when the reset button is clicked" do
+    start_button = scene.find("start_button")
+    reset_time_button = scene.find("reset_time_button")
+    click_helper(start_button, 1)
+    sleep(2.0)
+    click_helper(reset_time_button, 1)
+    scene.find("elapsed_time_value").text.should == "00:00:00"
+    scene.find("total_miles_value").text.should == "00.00"
   end
 
 end

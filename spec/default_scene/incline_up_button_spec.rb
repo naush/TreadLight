@@ -11,17 +11,17 @@ describe "Incline Up Button" do
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
   end
 
-  150.times do |times|
-    it "should increase incline by #{0.1 * times}% when the incline_up_button is clicked" do
+  27.times do |times|
+    it "should increase incline by #{1.5 + 0.5 * times}% when the incline_up_button is clicked" do
       incline_up_button = scene.find("incline_up_button")
       click_helper(incline_up_button, times)
-      scene.incline?.should == "#{0.1 * times}%"
+      scene.incline?.should == "#{1.5 + 0.5 * times}%"
     end
   end
 
   it "should not increase incline if incline is at maximum=15.0%" do
     incline_up_button = scene.find("incline_up_button")
-    click_helper(incline_up_button, 151)
+    click_helper(incline_up_button, 31)
     scene.incline?.should == '15.0%'
   end
 

@@ -12,16 +12,14 @@ describe "Incline Down Button" do
   end
 
   it "should decrease incline by 0.1% when the incline_down_button is clicked" do
-    incline_up_button = scene.find("incline_up_button")
     incline_down_button = scene.find("incline_down_button")
-    click_helper(incline_up_button, 1)
     click_helper(incline_down_button, 1)
-    scene.incline?.should == '0.0%'
+    scene.incline?.should == '1.0%'
   end
 
   it "should not decrease incline if incline is at minimum=0.0%" do
     incline_down_button = scene.find("incline_down_button")
-    click_helper(incline_down_button, 1)
+    click_helper(incline_down_button, 4)
     scene.incline?.should == '0.0%'
   end
 

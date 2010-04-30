@@ -16,7 +16,7 @@ describe "Default Scene" do
   end
 
   it "should initialize to 0.0% for incline" do
-    scene.incline?.should == "0.0%"
+    scene.incline?.should == "1.5%"
   end
 
 end
