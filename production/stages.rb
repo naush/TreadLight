@@ -3,4 +3,5 @@ stage "default" do
   title "Treadmill"
   location [200, 25]
   size [400, 300]
+  # framed false
 end

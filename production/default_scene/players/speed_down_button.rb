@@ -1,8 +1,9 @@
 module SpeedDownButton
   def mouse_clicked(event)
-    scene.speed_down
-    if (scene.find('speed_value').text == '0.0')
-      scene.stop_timer
+    speed_value = scene.find('speed_value')
+    if (speed_value.text.to_f <= 0.5)
+      scene.speed = '0.0'
     end
+    scene.speed_down
   end
 end

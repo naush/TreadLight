@@ -30,6 +30,8 @@ class LimelightFixture
     Limelight::Specs.producer.open
     @speed_input_box = scene.find('speed_input_box')
     @incline_input_box = scene.find('incline_input_box')
+    @elapsed_time_value = scene.find('elapsed_time_value')
+    @total_miles_value = scene.find('total_miles_value')
   end
 
   def shutdown
@@ -50,7 +52,7 @@ class LimelightFixture
   def click(prop_id)
     scene.find(prop_id).mouse_clicked(nil)
   end
-  
+
   def type_in_input_box(key, box)
     if (box == :speed)
       input_box = @speed_input_box
@@ -101,6 +103,14 @@ class LimelightFixture
   
   def given_incline_is(incline)
     scene.incline = incline
+  end
+
+  def given_elapsed_time_is_seconds(seconds)
+    scene.set_time(seconds.to_f)
+  end
+
+  def when_hours_have_elapsed(hour)
+    scene.set_time(hour.to_f * 60 * 60)
   end
 
 end

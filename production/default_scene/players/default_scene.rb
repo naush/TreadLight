@@ -32,12 +32,17 @@ module DefaultScene
   def key_pressed(event)
     key_code = event.getKeyCode
     if (key_code == 39)
-      start_timer
-      speed_up
+      if (self.speed?.to_f < 0.5)
+        self.speed = '0.5'
+        start_timer
+      else
+        speed_up
+      end
     elsif (key_code == 37)
-      speed_down
-      if (find('speed_value').text == '0.0')
-        stop_timer
+      if (self.speed?.to_f <= 0.5)
+        self.speed = '0.0'
+      else
+        speed_down
       end
     elsif (key_code == 38)
       incline_up
@@ -53,9 +58,14 @@ module DefaultScene
   def stop_timer
     @timer.stop
   end
-  
+
   def reset_timer
     @timer.reset
+  end
+
+  def set_time(seconds)
+    @timer.elapsed_time = seconds
+    @timer.update_elapsed_time_and_total_miles
   end
 
 end

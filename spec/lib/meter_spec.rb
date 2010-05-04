@@ -23,4 +23,9 @@ describe "Meter" do
     @incline_value.text.should == '1.0%'
   end
   
+  it "should stop treadmill if speed is set to 0" do
+    @meter.speed = '0.0'
+    @treadmill.stopped.should == true
+  end
+  
 end

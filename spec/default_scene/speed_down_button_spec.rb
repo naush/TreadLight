@@ -27,4 +27,12 @@ describe "Speed Down Button" do
     scene.speed?.should == "0.0"
   end
 
+  it "should set speed to 0.0 when speed is below 0.5" do
+    speed_up_button = scene.find("speed_up_button")
+    speed_down_button = scene.find("speed_down_button")
+    click_helper(speed_up_button, 1)
+    click_helper(speed_down_button, 1)
+    scene.speed?.should == "0.0"
+  end
+
 end

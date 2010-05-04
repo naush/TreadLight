@@ -13,7 +13,7 @@ module Controller
     end
     return current_value
   end
-  
+
   def valid_update?(current_value, step, boundary_value)
     return (step > 0 && current_value + step <= boundary_value) ||
            (step < 0 && current_value + step >= boundary_value)

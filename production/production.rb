@@ -23,6 +23,7 @@ module Production
  def production_opening
    $: << File.expand_path(File.dirname(__FILE__) + "/lib")
    require 'mock_treadmill'
+   require 'mock_timer'
    require 'meter'
    require 'timer'
    require 'ifit.jar'
@@ -38,13 +39,16 @@ module Production
    @default_scene = theater["default"].current_scene
    @speed_value = @default_scene.find("speed_value")
    @incline_value = @default_scene.find("incline_value")
+   @elapsed_time_value = @default_scene.find("elapsed_time_value")
+   @total_miles_value = @default_scene.find("total_miles_value")
    if (test_run)
      @treadmill = MockTreadmill.new
+     @timer = MockTimer.new(@elapsed_time_value, @total_miles_value, @speed_value)
    else
      @treadmill = Java::ifit::Treadmill.new
+     @timer = Timer.new(@elapsed_time_value, @total_miles_value, @speed_value)
    end
    @meter = Meter.new(@treadmill, @speed_value, @incline_value)
-   @timer = Timer.new(@default_scene.find("elapsed_time_value"), @default_scene.find("total_miles_value"), @speed_value)
    @default_scene.meter = @meter
    @default_scene.timer = @timer
  end
@@ -56,9 +60,10 @@ module Production
 #    return true
 #  end
 #
-#  # Called when the production is about to be closed.
-#  def production_closing
-#  end
+ # Called when the production is about to be closed.
+ def production_closing
+   @treadmill.shutdown if @treadmill
+ end
 #
 #  # Called when the production is fully closed.
 #  def production_closed

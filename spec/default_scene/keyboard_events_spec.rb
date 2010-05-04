@@ -12,12 +12,22 @@ describe "Keyboard Events" do
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
     scene.timer = @timer
   end
-
-  it "should increase speed by 0.1 if the right arrow-key is pressed 1 times" do
+  
+  it "should set speed to 0.5 when right arrow-key is pressed if speed is less than 0.5" do
     right_arrow_event = mock("event")
     right_arrow_event.should_receive(:getKeyCode).and_return(39)
     scene.key_pressed(right_arrow_event)
-    scene.speed?.should == "0.1"
+    scene.speed?.should == "0.5"
+  end
+  
+  it "should set speed to 0.0 when left arrow-key is pressed if speed is less than 0.5" do
+    right_arrow_event = mock("event")
+    left_arrow_event = mock("event")
+    right_arrow_event.should_receive(:getKeyCode).and_return(39)
+    left_arrow_event.should_receive(:getKeyCode).and_return(37)
+    scene.key_pressed(right_arrow_event)
+    scene.key_pressed(left_arrow_event)
+    scene.speed?.should == "0.0"
   end
 
   it "should decrease speed by 0.1 if the left arrow-key is pressed 1 times" do
@@ -26,6 +36,7 @@ describe "Keyboard Events" do
     right_arrow_event.should_receive(:getKeyCode).and_return(39)
     left_arrow_event.should_receive(:getKeyCode).and_return(37)
     scene.key_pressed(right_arrow_event)
+    scene.speed?.should == "0.5"
     scene.key_pressed(left_arrow_event)
     scene.speed?.should == "0.0"
   end
@@ -36,7 +47,7 @@ describe "Keyboard Events" do
     scene.key_pressed(up_arrow_event)
     scene.incline?.should == "2.0%"
   end
-  
+
   it "should decrease incline by 0.5% if the down arrow-key is pressed 1 times" do
     down_arrow_event = mock("event")
     down_arrow_event.should_receive(:getKeyCode).and_return(40)

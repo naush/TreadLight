@@ -1,65 +1,71 @@
+$: << File.expand_path(File.dirname(__FILE__) + "/lib")
 require 'converter'
 
 class Timer
-  
-  include Converter
 
   attr_accessor :miles
+  attr_accessor :elapsed_time
+
+  NINTY_NINE_HOURS = 86400
 
   def initialize(elapsed_time_value, total_miles_value, speed_value)
     @elapsed_time_value = elapsed_time_value
     @total_miles_value = total_miles_value
     @speed_value = speed_value
-    @seconds = 0
+    @elapsed_time = 0.0
     @miles = 0
   end
 
   def start
-    if @timer_thread.nil?
-      @timer_thread = Thread.new do
-        while true
-          @elapsed_time_value.text = generate_time_script(@seconds)
-          @total_miles_value.text = generate_miles_script(@speed_value.text.to_f, @miles)
-          @seconds += 1
-          sleep(1.0)
-        end
+    return if @timer_thread
+    @start_time = Time.now - @elapsed_time
+    @is_running = true
+    @timer_thread = Thread.new do
+      while @is_running
+        @elapsed_time = Time.now - @start_time
+        update_elapsed_time_and_total_miles
+        sleep(1.0)
       end
     end
   end
 
-  def generate_miles_script(mph, miles)
-    miles += mph / 3600
-    ret = "%0.2f" % miles
-    @miles = miles
-    if (miles < 10)
-      return '0' + ret
-    elsif (miles < 100)
-      return ret
-    else
-      @miles = 0
-      return '00.00'
-    end
+  def update_elapsed_time_and_total_miles
+    @miles += speed_in_miles_per_second
+    reset_time if (@elapsed_time >= NINTY_NINE_HOURS)    
+    reset_distance if (@miles >= 100)
+    update_props
   end
 
-  def generate_time_script(seconds)
-    if (seconds == 100*60*60)
-      seconds = 0
-      return '00:00:00'
-    else
-      return Converter.to_hour(seconds) + ':' + Converter.to_minute(seconds) + ':' + Converter.to_second(seconds)
-    end
+  def update_props
+    @elapsed_time_value.text = Converter.to_time_format(@elapsed_time)
+    @total_miles_value.text = Converter.to_distance_format(@miles)
   end
 
   def stop
-    Thread.kill(@timer_thread) if !@timer_thread.nil?
-    @timer_thread = nil
+    if (@timer_thread)
+      @is_running = false
+      @timer_thread.join
+      @timer_thread = nil
+    end
+  end
+
+  def speed_in_miles_per_second
+    @speed_value.text.to_f / 3600
   end
 
   def reset
-    @seconds = 0
-    @miles = 0
-    @elapsed_time_value.text = '00:00:00'
-    @total_miles_value.text = '00.00'
+    reset_time
+    reset_distance
+    update_props
+  end
+
+  def reset_time
+    @start_time = Time.now
+    @elapsed_time = 0
+  end
+
+  def reset_distance
+    @miles = 0.0
   end
 
 end
