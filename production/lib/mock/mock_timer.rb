@@ -10,7 +10,7 @@ class MockTimer < Timer
 
   def update_elapsed_time_and_total_miles
     if (@start == true)
-      reset_time if (@elapsed_time >= NINTY_NINE_HOURS)    
+      reset_time if (@elapsed_time >= Constants::NINTY_NINE_HOURS)    
       reset_distance if (@miles >= 100)
       update_props
     end

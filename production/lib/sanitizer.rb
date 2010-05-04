@@ -1,22 +1,19 @@
-module Sanitizer
+$: << File.expand_path(File.dirname(__FILE__) + "/lib")
+require 'constants'
 
-  MAX_SPEED = 10.0
-  MIN_SPEED = 0.0
-  LOW_SPEED = 0.5
-  MAX_INCLINE = 15.0
-  MIN_INCLINE = 0.0
+module Sanitizer
 
   def self.sanitize_speed(speed, direction = :down)
     speed = speed.to_f
-    return (direction == :down ? MIN_SPEED : LOW_SPEED) if speed < LOW_SPEED
-    return MAX_SPEED if speed > MAX_SPEED
+    return (direction == :down ? Constants::MIN_SPEED : Constants::LOW_SPEED) if speed < Constants::LOW_SPEED
+    return Constants::MAX_SPEED if speed > Constants::MAX_SPEED
     return speed
   end
 
   def self.sanitize_incline(incline)
     incline = incline.to_f
-    return MIN_INCLINE if incline < MIN_INCLINE
-    return MAX_INCLINE if incline > MAX_INCLINE
+    return Constants::MIN_INCLINE if incline < Constants::MIN_INCLINE
+    return Constants::MAX_INCLINE if incline > Constants::MAX_INCLINE
     return incline
   end
 

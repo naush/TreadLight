@@ -1,7 +1,7 @@
-module Controller
+$: << File.expand_path(File.dirname(__FILE__) + "/lib")
+require 'constants'
 
-  SPEED_STEP = 0.1
-  INCLINE_STEP = 0.5
+module Controller
 
   def speed=(speed)
     speed_float = speed.to_f
@@ -24,22 +24,22 @@ module Controller
 
   def speed_up
     start_timer
-    new_speed = @meter.speed?.to_f + SPEED_STEP
+    new_speed = @meter.speed?.to_f + Constants::SPEED_STEP
     @meter.speed = Sanitizer.sanitize_speed(new_speed, :up)
   end
 
   def speed_down
-    new_speed = Sanitizer.sanitize_speed(@meter.speed?.to_f - SPEED_STEP, :down)
+    new_speed = Sanitizer.sanitize_speed(@meter.speed?.to_f - Constants::SPEED_STEP, :down)
     stop_timer if new_speed <= 0.0
     @meter.speed = new_speed
   end
 
   def incline_up
-    @meter.incline = Sanitizer.sanitize_incline(@meter.incline?.to_f + INCLINE_STEP).to_s + '%'
+    @meter.incline = Sanitizer.sanitize_incline(@meter.incline?.to_f + Constants::INCLINE_STEP).to_s + '%'
   end
 
   def incline_down
-    @meter.incline = Sanitizer.sanitize_incline(@meter.incline?.to_f - INCLINE_STEP).to_s + '%'
+    @meter.incline = Sanitizer.sanitize_incline(@meter.incline?.to_f - Constants::INCLINE_STEP).to_s + '%'
   end
 
   def reset_incline

@@ -1,12 +1,11 @@
 $: << File.expand_path(File.dirname(__FILE__) + "/lib")
 require 'converter'
+require 'constants'
 
 class Timer
 
   attr_accessor :miles
   attr_accessor :elapsed_time
-
-  NINTY_NINE_HOURS = 86400
 
   def initialize(elapsed_time_value, total_miles_value, speed_value)
     @elapsed_time_value = elapsed_time_value
@@ -28,15 +27,15 @@ class Timer
         @elapsed_time += time_delta
         @miles += Converter.to_miles_per_second(@speed_value.text.to_f) * time_delta
         update_elapsed_time_and_total_miles
+        update_props
         sleep(1.0)
       end
     end
   end
 
   def update_elapsed_time_and_total_miles
-    reset_time if (@elapsed_time >= NINTY_NINE_HOURS)    
-    reset_distance if (@miles >= 100)
-    update_props
+    reset_time if (@elapsed_time >= Constants::NINTY_NINE_HOURS)    
+    reset_distance if (@miles >= Constants::MAX_DISTANCE)
   end
 
   def update_props
