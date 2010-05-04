@@ -8,7 +8,7 @@ describe "Speed Up Button" do
     @speed_value = scene.find("speed_value")
     @incline_value = scene.find("incline_value")
     @treadmill = MockTreadmill.new
-    @timer = Timer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
+    @timer = MockTimer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
     scene.timer = @timer
   end
@@ -21,7 +21,7 @@ describe "Speed Up Button" do
 
   it "should not increase speed if speed is at maximum=10.0" do
     speed_up_button = scene.find("speed_up_button")
-    click_helper(speed_up_button, 101)
+    click_helper(speed_up_button, 96)
     speed_value = scene.find("speed_value")
     speed_value.text.should == '10.0'
     scene.speed?.should == '10.0'

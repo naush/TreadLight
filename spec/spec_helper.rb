@@ -3,10 +3,14 @@ require 'spec'
 require 'limelight/specs/spec_helper'
 
 $: << File.expand_path(File.dirname(__FILE__) + "/../production/lib/")
+$: << File.expand_path(File.dirname(__FILE__) + "/../production/lib/mock")
 require 'mock_treadmill'
+require 'mock_timer'
 require 'meter'
 require 'timer'
 require 'converter'
+require 'sanitizer'
+require 'key_map'
 
 # Set the Gem home to the frozen gems
 $PRODUCTION_PATH = File.expand_path(File.dirname(__FILE__) + "/../production/")

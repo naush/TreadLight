@@ -8,7 +8,9 @@ describe "Incline Down Button" do
     @speed_value = scene.find("speed_value")
     @incline_value = scene.find("incline_value")
     @treadmill = MockTreadmill.new
+    @timer = MockTimer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
+    scene.timer = @timer
   end
 
   it "should decrease incline by 0.1% when the incline_down_button is clicked" do

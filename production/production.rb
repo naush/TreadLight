@@ -22,6 +22,7 @@ module Production
  # This is a good place to require needed files and instantiate objects in the business layer.
  def production_opening
    $: << File.expand_path(File.dirname(__FILE__) + "/lib")
+   $: << File.expand_path(File.dirname(__FILE__) + "/lib/mock")
    require 'mock_treadmill'
    require 'mock_timer'
    require 'meter'

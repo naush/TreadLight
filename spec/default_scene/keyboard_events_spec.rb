@@ -8,7 +8,7 @@ describe "Keyboard Events" do
     @speed_value = scene.find("speed_value")
     @incline_value = scene.find("incline_value")
     @treadmill = MockTreadmill.new
-    @timer = Timer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
+    @timer = MockTimer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
     scene.timer = @timer
   end
@@ -19,7 +19,7 @@ describe "Keyboard Events" do
     scene.key_pressed(right_arrow_event)
     scene.speed?.should == "0.5"
   end
-  
+
   it "should set speed to 0.0 when left arrow-key is pressed if speed is less than 0.5" do
     right_arrow_event = mock("event")
     left_arrow_event = mock("event")

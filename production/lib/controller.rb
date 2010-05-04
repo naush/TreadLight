@@ -1,42 +1,66 @@
 module Controller
 
-  MAX_SPEED = 10.0
-  MIN_SPEED = 0.0
-  MAX_INCLINE = 15.0
-  MIN_INCLINE = 0.0
   SPEED_STEP = 0.1
   INCLINE_STEP = 0.5
 
-  def update_meter(current_value, step, boundary_value)
-    if valid_update?(current_value, step, boundary_value)
-      current_value += step
-    end
-    return current_value
+  def speed=(speed)
+    speed_float = speed.to_f
+    speed == '0.0' ? stop_timer : start_timer
+    @meter.speed = Sanitizer.sanitize_speed(speed)
   end
 
-  def valid_update?(current_value, step, boundary_value)
-    return (step > 0 && current_value + step <= boundary_value) ||
-           (step < 0 && current_value + step >= boundary_value)
+  def speed?
+    return @meter.speed?
+  end
+
+  def incline=(incline)
+    incline_value = incline.chop.to_f
+    @meter.incline = "%0.1f%" % Sanitizer.sanitize_incline(incline_value)
+  end
+
+  def incline?
+    return @meter.incline?
   end
 
   def speed_up
-    @meter.speed = update_meter(@meter.speed?.to_f, SPEED_STEP, MAX_SPEED).to_s
+    start_timer
+    new_speed = @meter.speed?.to_f + SPEED_STEP
+    @meter.speed = Sanitizer.sanitize_speed(new_speed, :up)
   end
 
   def speed_down
-    @meter.speed = update_meter(@meter.speed?.to_f, -SPEED_STEP, MIN_SPEED).to_s
+    new_speed = Sanitizer.sanitize_speed(@meter.speed?.to_f - SPEED_STEP, :down)
+    stop_timer if new_speed <= 0.0
+    @meter.speed = new_speed
   end
 
   def incline_up
-    @meter.incline = update_meter(@meter.incline?.to_f, INCLINE_STEP, MAX_INCLINE).to_s + '%'
+    @meter.incline = Sanitizer.sanitize_incline(@meter.incline?.to_f + INCLINE_STEP).to_s + '%'
   end
 
   def incline_down
-    @meter.incline = update_meter(@meter.incline?.to_f, -INCLINE_STEP, MIN_INCLINE).to_s + '%'
+    @meter.incline = Sanitizer.sanitize_incline(@meter.incline?.to_f - INCLINE_STEP).to_s + '%'
   end
 
   def reset_incline
     @meter.incline = "1.5%"
+  end
+
+  def start_timer
+    @timer.start
+  end
+
+  def stop_timer
+    @timer.stop
+  end
+
+  def reset_timer
+    @timer.reset
+  end
+
+  def time=(seconds)
+    @timer.elapsed_time = seconds
+    @timer.update_elapsed_time_and_total_miles
   end
 
 end

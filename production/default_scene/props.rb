@@ -6,7 +6,6 @@ top_display_panel do
       total_miles_value :text => '00.00', :id => 'total_miles_value'
       elapsed_time_label :text => "Elapsed\nTime", :id => 'elapsed_time_label'
       elapsed_time_value :text => '00:00:00', :id => 'elapsed_time_value'
-      # small_dummy_button :id => 'small_dummy_button'
   end
 end
 

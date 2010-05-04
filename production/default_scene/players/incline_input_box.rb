@@ -19,14 +19,8 @@ module InclineInputBox
 
   def update
     self.text += '%' if self.text[-1] != '%'
-    incline_value = self.text.chop.to_f
-    if (incline_value > 15.0)
-      incline_value = 15.0
-    elsif (incline_value < 0.0)
-      incline_value = 0.0
-    end
-    scene.incline = "%0.1f" % incline_value + '%'
-    self.text = "%0.1f" % incline_value + '%'
+    scene.incline = self.text
+    self.text = scene.incline?
   end
 
 end

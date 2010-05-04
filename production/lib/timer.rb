@@ -14,15 +14,19 @@ class Timer
     @speed_value = speed_value
     @elapsed_time = 0.0
     @miles = 0
+    @last_updated_time = 0
   end
 
   def start
     return if @timer_thread
-    @start_time = Time.now - @elapsed_time
+    @last_updated_time = Time.now
     @is_running = true
     @timer_thread = Thread.new do
       while @is_running
-        @elapsed_time = Time.now - @start_time
+        time_delta = Time.now - @last_updated_time
+        @last_updated_time = Time.now
+        @elapsed_time += time_delta
+        @miles += Converter.to_miles_per_second(@speed_value.text.to_f) * time_delta
         update_elapsed_time_and_total_miles
         sleep(1.0)
       end
@@ -30,7 +34,6 @@ class Timer
   end
 
   def update_elapsed_time_and_total_miles
-    @miles += speed_in_miles_per_second
     reset_time if (@elapsed_time >= NINTY_NINE_HOURS)    
     reset_distance if (@miles >= 100)
     update_props
@@ -49,10 +52,6 @@ class Timer
     end
   end
 
-  def speed_in_miles_per_second
-    @speed_value.text.to_f / 3600
-  end
-
   def reset
     reset_time
     reset_distance
@@ -60,7 +59,7 @@ class Timer
   end
 
   def reset_time
-    @start_time = Time.now
+    @last_udpated_time = Time.now
     @elapsed_time = 0
   end
 

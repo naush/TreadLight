@@ -3,6 +3,7 @@ $: << File.expand_path(File.dirname(__FILE__) + "/../production")
 
 require 'limelight/specs/spec_helper'
 require 'rubygems'
+require 'mock/mock_event'
 
 $PRODUCTION_PATH = File.expand_path(File.dirname(__FILE__) + "/../production")
 Gem.use_paths(File.join($PRODUCTION_PATH , "__resources", "gems"), Gem.default_path)
@@ -12,16 +13,6 @@ Dir.glob(File.join("__resources", "gems", "gems", "**", "lib")).each do |dir|
 end
 
 class LimelightFixture
-  
-  class MockEvent
-    attr_accessor :keyCode
-    def initialize(keyCode)
-      @keyCode = keyCode
-    end
-    def getKeyCode
-      return @keyCode
-    end
-  end
 
   def initialize
     Limelight::Main.initializeTestContext
@@ -96,21 +87,21 @@ class LimelightFixture
   def text(id)
     scene.find(id).text
   end
-  
+
   def given_speed_is(speed)
     scene.speed = speed
   end
-  
+
   def given_incline_is(incline)
     scene.incline = incline
   end
 
   def given_elapsed_time_is_seconds(seconds)
-    scene.set_time(seconds.to_f)
+    scene.time = seconds.to_f
   end
 
   def when_hours_have_elapsed(hour)
-    scene.set_time(hour.to_f * 60 * 60)
+    scene.time = hour.to_f * 60 * 60
   end
 
 end
