@@ -4,9 +4,9 @@ require 'constants'
 module Controller
 
   def speed=(speed)
-    speed_float = speed.to_f
-    speed == '0.0' ? stop_timer : start_timer
-    @meter.speed = Sanitizer.sanitize_speed(speed)
+    new_speed = Sanitizer.sanitize_speed(speed.to_f)
+    new_speed == 0.0 ? stop_timer : start_timer
+    @meter.speed = new_speed
   end
 
   def speed?

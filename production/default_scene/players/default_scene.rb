@@ -12,7 +12,8 @@ module DefaultScene
 
   def key_pressed(event)
     key_code = event.getKeyCode
-    send(:"#{KeyMap.method_name_of(key_code)}")
+    method_name = KeyMap.method_name_of(key_code)
+    send(method_name.to_sym) if method_name
   end
 
 end
