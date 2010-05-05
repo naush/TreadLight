@@ -59,8 +59,8 @@ module Controller
   end
 
   def time=(seconds)
-    @timer.elapsed_time = seconds
-    @timer.update_elapsed_time_and_total_miles
+    @timer.update_elapsed_time_and_total_miles(seconds)
+		@timer.update_props
   end
 
 end
