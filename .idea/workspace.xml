@@ -95,10 +95,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mock_event.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="mock_event.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/production/lib/mock/mock_event.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="56" selection-start="146" selection-end="146" vertical-scroll-proportion="0.23391813">
+            <state line="10" column="56" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/production/lib/controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="53" selection-start="518" selection-end="518" vertical-scroll-proportion="0.53801167">
               <folding />
             </state>
           </provider>
@@ -124,10 +133,10 @@
         <option value="$PROJECT_DIR$/production/production.rb" />
         <option value="$PROJECT_DIR$/production/default_scene/players/speed_input_box.rb" />
         <option value="$PROJECT_DIR$/production/lib/timer.rb" />
-        <option value="$PROJECT_DIR$/production/lib/controller.rb" />
         <option value="$PROJECT_DIR$/fixtures/limelight_fixture.rb" />
         <option value="$PROJECT_DIR$/production/lib/mock/mock_event.rb" />
         <option value="$PROJECT_DIR$/production/default_scene/players/incline_input_box.rb" />
+        <option value="$PROJECT_DIR$/production/lib/controller.rb" />
       </list>
     </option>
   </component>
@@ -215,68 +224,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iFitLime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="treadmill" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="production" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iFitLime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="treadmill" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="production" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="default_scene" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iFitLime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="treadmill" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="production" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="default_scene" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="players" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -672,13 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/production/lib/controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="17" selection-start="956" selection-end="956" vertical-scroll-proportion="0.32163742">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/production/lib/util/sanitizer.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="18" selection-start="601" selection-end="601" vertical-scroll-proportion="0.44444445">
@@ -737,7 +677,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/production/lib/mock/mock_event.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="56" selection-start="146" selection-end="146" vertical-scroll-proportion="0.23391813">
+        <state line="10" column="56" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/lib/controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="53" selection-start="518" selection-end="518" vertical-scroll-proportion="0.53801167">
           <folding />
         </state>
       </provider>
