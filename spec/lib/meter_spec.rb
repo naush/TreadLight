@@ -8,7 +8,8 @@ describe "Meter" do
     @speed_value = scene.find("speed_value")
     @incline_value = scene.find("incline_value")
     @treadmill = MockTreadmill.new
-    @timer = MockTimer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
+    @elapsed_time = ElapsedTime.new
+    @timer = MockTimer.new(@elapsed_time_value, @total_miles_value, @speed_value, @elapsed_time)
     @meter = Meter.new(@treadmill, @speed_value, @incline_value)
   end
 
@@ -28,5 +29,5 @@ describe "Meter" do
     @meter.speed = '0.0'
     @treadmill.stopped.should == true
   end
-  
+
 end

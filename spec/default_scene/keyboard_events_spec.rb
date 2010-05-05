@@ -7,12 +7,15 @@ describe "Keyboard Events" do
   before (:each) do
     @speed_value = scene.find("speed_value")
     @incline_value = scene.find("incline_value")
+    @elapsed_time_value = scene.find("elapsed_time_value")
+    @total_miles_value = scene.find("total_miles_value")
     @treadmill = MockTreadmill.new
-    @timer = MockTimer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
+    @elapsed_time = ElapsedTime.new
+    @timer = MockTimer.new(@elapsed_time_value, @total_miles_value, @speed_value, @elapsed_time)
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
     scene.timer = @timer
   end
-  
+
   it "should set speed to 0.5 when right arrow-key is pressed if speed is less than 0.5" do
     right_arrow_event = mock("event")
     right_arrow_event.should_receive(:getKeyCode).and_return(39)

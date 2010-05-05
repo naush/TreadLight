@@ -1,20 +1,15 @@
 $: << File.expand_path(File.dirname(__FILE__) + "/lib")
-require 'converter'
+# require 'converter'
 require 'timer'
 
 class MockTimer < Timer
 
-  def start
-    @start = true
+  def start_thread(&block)
+    @run_block = block
   end
 
-	def update_elapsed_time_and_total_miles(time_delta)
-		calculate_elapsed_time_and_total_miles(time_delta) if @start
-	end
-
-  def stop
-    @start = false
-    return true
+  def run_task
+    @run_block.call if @is_running
   end
 
 end

@@ -58,9 +58,9 @@ module Controller
     @timer.reset
   end
 
-  def time=(seconds)
-    @timer.update_elapsed_time_and_total_miles(seconds)
-		@timer.update_props
+  def time=(times)
+    @timer.time = times
+    @timer.run_task
   end
 
 end

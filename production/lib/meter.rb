@@ -1,5 +1,5 @@
 class Meter
-  
+
   def initialize(treadmill, speed_value, incline_value)
     @treadmill = treadmill
     @speed_value = speed_value

@@ -7,8 +7,11 @@ describe "Input Box" do
   before (:each) do
     @speed_value = scene.find("speed_value")
     @incline_value = scene.find("incline_value")
+    @elapsed_time_value = scene.find("elapsed_time_value")
+    @total_miles_value = scene.find("total_miles_value")
     @treadmill = MockTreadmill.new
-    @timer = MockTimer.new(scene.find("elapsed_time_value"), scene.find("total_miles_value"), @speed_value)
+    @elapsed_time = ElapsedTime.new
+    @timer = MockTimer.new(@elapsed_time_value, @total_miles_value, @speed_value, @elapsed_time)
     scene.meter = Meter.new(@treadmill, @speed_value, @incline_value)
     @event = mock('event')
     @event.should_receive(:keyCode).and_return(10)
@@ -28,7 +31,7 @@ describe "Input Box" do
     @incline_input_box.key_released(@event)
     scene.incline?.should == '1.0%'
   end
-  
+
   it "should set max speed when speed_input_box is set with a number larger than max speed" do
     @speed_input_box = scene.find('speed_input_box')
     @speed_input_box.text = '10.1'

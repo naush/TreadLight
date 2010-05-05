@@ -1,73 +1,41 @@
-# This file (production.rb) is the first file loaded opening a production.  It must define a module named 'Production'.
-# The containing production will acquire all the behavior defined in this module.
-# You may define serveral hooks and initialization steps here.
-
 module Production
   attr_reader :treadmill
   attr_accessor :test_run
-#  # Define this method if you want the production name to be different from the default, directory name.
-#  def name
-#    return Treadmill
-#  end
-#
-#  # Returns the minimum version of limelight required to run this production.  Default: "0.0.0"
-#  # If the version of limelight used to open this production is less than the minimum, 
-#  # an error will be displayed (starting with version 0.4.0).
-#  #
-#  def minimum_limelight_version
-#    return "0.5.5"
-#  end
-#
- # Hook #1.  Called when the production is newly created, before any loading has been done.
- # This is a good place to require needed files and instantiate objects in the business layer.
- def production_opening
-   $: << File.expand_path(File.dirname(__FILE__) + "/lib")
-   $: << File.expand_path(File.dirname(__FILE__) + "/lib/mock")
-   require 'mock_treadmill'
-   require 'mock_timer'
-   require 'meter'
-   require 'timer'
-   require 'ifit.jar'
- end
-#
-#  # Hook #2.  Called after internal gems have been loaded and stages have been instantiated, yet before
-#  # any scenes have been opened.
-#  def production_loaded
-#  end
-#
- # Hook #3.  Called when the production, and all the scenes, have fully opened.
- def production_opened
-   @default_scene = theater["default"].current_scene
-   @speed_value = @default_scene.find("speed_value")
-   @incline_value = @default_scene.find("incline_value")
-   @elapsed_time_value = @default_scene.find("elapsed_time_value")
-   @total_miles_value = @default_scene.find("total_miles_value")
-   if (test_run)
-     @treadmill = MockTreadmill.new
-     @timer = MockTimer.new(@elapsed_time_value, @total_miles_value, @speed_value)
-   else
-     @treadmill = Java::ifit::Treadmill.new
-     @timer = Timer.new(@elapsed_time_value, @total_miles_value, @speed_value)
-   end
-   @meter = Meter.new(@treadmill, @speed_value, @incline_value)
-   @default_scene.meter = @meter
-   @default_scene.timer = @timer
- end
-#
-#  # The system will call this methods when it wishes to close the production, perhaps when the user quits the
-#  # application.  By default the production will always return true. You may override this behavior by re-implenting
-#  # the methods here.
-#  def allow_close?
-#    return true
-#  end
-#
- # Called when the production is about to be closed.
- def production_closing
-   @treadmill.shutdown if @treadmill
- end
-#
-#  # Called when the production is fully closed.
-#  def production_closed
-#  end
+
+  def production_opening
+    $: << File.expand_path(File.dirname(__FILE__) + "/lib")
+    $: << File.expand_path(File.dirname(__FILE__) + "/lib/mock")
+    $: << File.expand_path(File.dirname(__FILE__) + "/lib/extern")
+    $: << File.expand_path(File.dirname(__FILE__) + "/lib/util")
+    require 'mock_treadmill'
+    require 'mock_timer'
+    require 'mock_elapsed_time'
+    require 'meter'
+    require 'timer'
+    require 'ifit.jar'
+    require 'elapsed_time'
+  end
+
+  def production_opened
+    @default_scene = theater["default"].current_scene
+    @speed_value = @default_scene.find("speed_value")
+    @incline_value = @default_scene.find("incline_value")
+    @elapsed_time_value = @default_scene.find("elapsed_time_value")
+    @total_miles_value = @default_scene.find("total_miles_value")
+    if (test_run)
+      @treadmill = MockTreadmill.new
+      @timer = MockTimer.new(@elapsed_time_value, @total_miles_value, @speed_value, MockElapsedTime.new)
+    else
+      @treadmill = Java::ifit::Treadmill.new
+      @timer = Timer.new(@elapsed_time_value, @total_miles_value, @speed_value, ElapsedTime.new)
+    end
+    @meter = Meter.new(@treadmill, @speed_value, @incline_value)
+    @default_scene.meter = @meter
+    @default_scene.timer = @timer
+  end
+
+  def production_closing
+    @treadmill.shutdown if @treadmill
+  end
 
 end

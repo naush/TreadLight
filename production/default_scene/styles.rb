@@ -164,30 +164,16 @@ button {
   float :on
 }
 
-# small_button {
-#   extends :button
-#   width '14%'
-#   height '80%'
-#   left_margin 4
-#   right_margin 4
-# }
-# 
-# small_dummy_button {
-#   extends :small_button
-#   background_color :silver
-#   transparency '15%'
-# }
-
-reset_time_button {
-  # extends :small_button
-  float :on
-  x '85%'
-  y '8%'
+small_button {
+  extends :button
   width '10%'
   height '7%'
-  rounded_corner_radius 5
-  horizontal_alignment :center
-  vertical_alignment :center
+}
+
+reset_time_button {
+  extends :small_button
+  x '85%'
+  y '8%'
   background_color :blanched_almond
   hover {
     background_color :cornsilk

@@ -2,10 +2,10 @@ overlay_display :players => 'button', :id => 'overlay_display'
 
 top_display_panel do
   top_display do
-      total_miles_label :text => "Total\nMiles", :id => 'total_miles_label'
-      total_miles_value :text => '00.00', :id => 'total_miles_value'
-      elapsed_time_label :text => "Elapsed\nTime", :id => 'elapsed_time_label'
-      elapsed_time_value :text => '00:00:00', :id => 'elapsed_time_value'
+    total_miles_label :text => "Total\nMiles", :id => 'total_miles_label'
+    total_miles_value :text => '00.00', :id => 'total_miles_value'
+    elapsed_time_label :text => "Elapsed\nTime", :id => 'elapsed_time_label'
+    elapsed_time_value :text => '00:00:00', :id => 'elapsed_time_value'
   end
 end
 

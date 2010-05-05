@@ -18,9 +18,8 @@ module SpeedInputBox
   end
 
   def update
-    speed_value = self.text.to_f
-    scene.speed = "%0.1f" % speed_value
-    self.text = scene.speed?
+    self.text = "%0.1f" % self.text.to_f
+    scene.speed = self.text
   end
 
 end

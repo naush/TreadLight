@@ -6,7 +6,7 @@ require 'rubygems'
 require 'mock/mock_event'
 
 $PRODUCTION_PATH = File.expand_path(File.dirname(__FILE__) + "/../production")
-Gem.use_paths(File.join($PRODUCTION_PATH , "__resources", "gems"), Gem.default_path)
+Gem.use_paths(File.join($PRODUCTION_PATH, "__resources", "gems"), Gem.default_path)
 
 Dir.glob(File.join("__resources", "gems", "gems", "**", "lib")).each do |dir|
   $: << dir
@@ -97,11 +97,11 @@ class LimelightFixture
   end
 
   def given_elapsed_time_is_seconds(seconds)
-    scene.time = seconds.to_f
+    scene.time = [seconds.to_f]
   end
 
   def when_hours_have_elapsed(hour)
-    scene.time = hour.to_f * 60 * 60
+    scene.time = [hour.to_f * 60 * 60]
   end
 
 end
