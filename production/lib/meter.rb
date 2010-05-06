@@ -11,7 +11,7 @@ class Meter
   def speed=(speed)
     @treadmill.speed = speed.to_f
     @speed_value.text = speed
-    @treadmill.stop if speed == '0.0'
+    @treadmill.stop if speed == 0.0
   end
 
   def incline=(incline)

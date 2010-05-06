@@ -54,9 +54,7 @@ module Controller
   end
 
   def reset_timer
-
     @timer.reset
-
   end
 
 
